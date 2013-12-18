@@ -31,13 +31,3 @@ exports.remove = function(req, res){
         });
     });
 };
-
-exports.list = function(req, res){
-    var db = nStore.new('db/teams.db', function () {
-        // It's loaded now
-        db.all(function (err, results) {
-            // The database is now empty
-            res.send(results);
-        });
-    });
-};

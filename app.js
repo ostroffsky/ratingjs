@@ -5,9 +5,11 @@
 
 var express = require('express');
 var routes = require('./routes');
-var team = require('./routes/team');
 var http = require('http');
 var path = require('path');
+
+// modules
+var team = require('./routes/team');
 
 var app = express();
 
@@ -31,11 +33,12 @@ if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
 
+// routes
 app.get('/', routes.index);
 app.get('/add/:name', team.add);
 app.get('/remove/:id', team.remove);
-app.get('/list', team.list);
 
+// start server
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
 });
