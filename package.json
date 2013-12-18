@@ -9,6 +9,6 @@
         "express": "3.4.7",
         "ejs": "*",
         "less-middleware": "*",
-        "nodejs-microdb": "*"
+        "nstore": "*"
     }
 }
