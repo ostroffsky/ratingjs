@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Соревнования</title>
+    <link rel='stylesheet' href='/stylesheets/style.css'/>
+</head>
+<body>
+    <h1>Соревнования</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <td>Название</td>
+                <td>Результаты</td>
+                <td></td>
+            </tr>
+        </thead>
+        <tbody>
+            <% for(var event in events) {%>
+            <tr>
+                <td><%= events[event].name %></td>
+                <td>
+                    <form action="/events/edit/<%= event %>">
+                        <% for(var team in teams) {%>
+                        <input
+                                type="text"
+                                placeholder="<%= teams[team].name %>"
+                                name="<%= team %>"
+                                <% if(events[event].results) { %>
+                                value="<%= events[event].results[team] %>"
+                                <% } %>
+                                />
+                        <% } %>
+                        <input type="submit" value="Сохранить"/>
+                    </form>
+                </td>
+                <td><a href="/events/remove/<%= event %>">удалить</a></td>
+            </tr>
+            <% } %>
+        </tbody>
+        <tfoot>
+            <tr>
+                <td><input type="text" placeholder="Добавить соревнование" id="name"/></td>
+                <td><a id="add" href="#">добавить</a></td>
+            </tr>
+        </tfoot>
+    </table>
+
+    <script type="text/javascript">
+        var onSubmit = function(e) {
+            e.preventDefault();
+            var name = document.getElementById("name").value;
+            if(name != "") {
+                window.location.href = "/events/add/" + name;
+            }
+        };
+
+        document.getElementById("add").onclick = onSubmit;
+        document.getElementById("name").onkeydown = function(e) {
+            if(e.keyCode == 13) {
+                onSubmit(e);
+            }
+        };
+        document.getElementById("name").focus();
+    </script>
+    <script src='http://localhost:3001/socket.io/socket.io.js'></script>
+    <script src='http://localhost:3002/browser-sync-client.min.js'></script>
+</body>
+</html>

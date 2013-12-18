@@ -9,7 +9,8 @@ var http = require('http');
 var path = require('path');
 
 // modules
-var team = require('./routes/team');
+var teams = require('./routes/team');
+var events = require('./routes/event');
 
 var app = express();
 
@@ -35,8 +36,12 @@ if ('development' == app.get('env')) {
 
 // routes
 app.get('/', routes.index);
-app.get('/add/:name', team.add);
-app.get('/remove/:id', team.remove);
+app.get('/teams/add/:name', teams.add);
+app.get('/teams/remove/:id', teams.remove);
+app.get('/events', events.index);
+app.get('/events/add/:name', events.add);
+app.get('/events/edit/:id', events.edit);
+app.get('/events/remove/:id', events.remove);
 
 // start server
 http.createServer(app).listen(app.get('port'), function(){

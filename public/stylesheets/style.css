@@ -15,9 +15,6 @@ thead {
 tr {
   border-top: 1px solid #eee;
 }
-tbody tr:hover {
-  background-color: #f9ffe5;
-}
 td {
   padding: 5px 10px;
 }

@@ -18,7 +18,7 @@
             <% for(var team in data) {%>
             <tr>
                 <td><%= data[team].name %></td>
-                <td><a href="/remove/<%= team %>">удалить</a></td>
+                <td><a href="/teams/remove/<%= team %>">удалить</a></td>
             </tr>
             <% } %>
         </tbody>
@@ -35,7 +35,7 @@
             e.preventDefault();
             var name = document.getElementById("name").value;
             if(name != "") {
-                window.location.href = "/add/" + name;
+                window.location.href = "/teams/add/" + name;
             }
         };
 
@@ -45,6 +45,7 @@
                 onSubmit(e);
             }
         };
+        document.getElementById("name").focus();
     </script>
     <script src='http://localhost:3001/socket.io/socket.io.js'></script>
     <script src='http://localhost:3002/browser-sync-client.min.js'></script>
