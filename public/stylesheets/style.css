@@ -18,3 +18,13 @@ tr {
 td {
   padding: 5px 10px;
 }
+/* colors */
+.gold {
+  background-color: gold;
+}
+.silver {
+  background-color: silver;
+}
+.bronze {
+  background-color: #F19A79;
+}

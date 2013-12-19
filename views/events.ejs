@@ -28,6 +28,15 @@
                                 name="<%= team %>"
                                 <% if(events[event].results) { %>
                                 value="<%= events[event].results[team] %>"
+                                class="
+                                    <% if (events[event].results[team] == 5) { %>
+                                    gold
+                                    <% } else if (events[event].results[team] == 3) { %>
+                                    silver
+                                    <% } else if (events[event].results[team] == 2) { %>
+                                    bronze
+                                    <% } %>
+                                "
                                 <% } %>
                                 />
                         <% } %>
