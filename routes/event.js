@@ -63,10 +63,8 @@ exports.index = function(req, res){
             var teams = nStore.new('db/teams.db', function () {
                 teams.all(function (err, teamResults) {
 
-                    console.log(results);
                     res.render(
-                            'events',
-                            {
+                            'events', {
                                 events: results,
                                 teams: teamResults
                             }

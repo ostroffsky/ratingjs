@@ -12,7 +12,7 @@ exports.add = function(req, res){
         db.save(null, {name: name}, function (err) {
             if (err) { throw err; res.send("can't add tean");}
 
-            res.redirect("/");
+            res.redirect("/teams");
         });
     });
 };
@@ -24,7 +24,20 @@ exports.remove = function(req, res){
         db.remove(id, function (err) {
             if (err) { throw err; res.send("can't remove team");}
 
-            res.redirect("/");
+            res.redirect("/teams");
+        });
+    });
+};
+
+exports.index = function (req, res) {
+    var db = nStore.new('db/teams.db', function () {
+        db.all(function (err, results) {
+            res.render(
+                    'teams', {
+                        title: 'Участники',
+                        data: results
+                    }
+            );
         });
     });
 };

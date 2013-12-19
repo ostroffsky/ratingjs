@@ -36,6 +36,7 @@ if ('development' == app.get('env')) {
 
 // routes
 app.get('/', routes.index);
+app.get('/teams', teams.index);
 app.get('/teams/add/:name', teams.add);
 app.get('/teams/remove/:id', teams.remove);
 app.get('/events', events.index);

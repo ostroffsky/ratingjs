@@ -13,44 +13,52 @@
                 <td>Название</td>
                 <td>Результаты</td>
                 <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td class="nobr names">
+                    <% for(var team in teams) {%>
+                    <span class="cell"><%= teams[team].name %></span>
+                    <% } %>
+
+
+                </td>
+                <td></td>
+                <td></td>
             </tr>
         </thead>
         <tbody>
             <% for(var event in events) {%>
-            <tr>
-                <td><%= events[event].name %></td>
-                <td>
-                    <form action="/events/edit/<%= event %>">
+            <form action="/events/edit/<%= event %>">
+                <tr>
+                    <td><%= events[event].name %></td>
+                    <td class="nobr">
                         <% for(var team in teams) {%>
-                        <input
-                                type="text"
-                                placeholder="<%= teams[team].name %>"
-                                name="<%= team %>"
+                            <span class="cell">
+                                <input
+                                        type="text"
+                                        name="<%= team %>"
+                                        class="inp"
                                 <% if(events[event].results) { %>
-                                value="<%= events[event].results[team] %>"
-                                class="
-                                    <% if (events[event].results[team] == 5) { %>
-                                    gold
-                                    <% } else if (events[event].results[team] == 3) { %>
-                                    silver
-                                    <% } else if (events[event].results[team] == 2) { %>
-                                    bronze
-                                    <% } %>
-                                "
+                                    value="<%= events[event].results[team] %>"
                                 <% } %>
                                 />
+                            </span>
                         <% } %>
-                        <input type="submit" value="Сохранить"/>
-                    </form>
-                </td>
-                <td><a href="/events/remove/<%= event %>">удалить</a></td>
-            </tr>
+                    </td>
+                    <td><input type="submit" value="Сохранить"/></td>
+                    <td><a href="/events/remove/<%= event %>">удалить</a></td>
+                </tr>
+            </form>
             <% } %>
         </tbody>
         <tfoot>
             <tr>
                 <td><input type="text" placeholder="Добавить соревнование" id="name"/></td>
                 <td><a id="add" href="#">добавить</a></td>
+                <td></td>
+                <td></td>
             </tr>
         </tfoot>
     </table>
