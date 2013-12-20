@@ -13,10 +13,10 @@
         </tr>
     </thead>
     <tbody>
-        <% for(var team in data) {%>
+        <% for(var i=0; i<data.length; i++) {%>
         <tr>
-            <td><%= data[team].name %></td>
-            <td><a href="/teams/remove/<%= team %>" class="rl">удалить</a></td>
+            <td><%= data[i][1] %></td>
+            <td><a href="/teams/remove/<%= data[i][0] %>" class="rl">удалить</a></td>
         </tr>
         <% } %>
     </tbody>

@@ -31,11 +31,24 @@ exports.remove = function(req, res){
 
 exports.index = function (req, res) {
     var db = nStore.new('db/teams.db', function () {
-        db.all(function (err, results) {
+        db.all(function (err, teamList) {
+            var sortable = [];
+
+            for (var teamItem in teamList) {
+                sortable.push([
+                    teamItem,
+                    teamList[teamItem].name
+                ]);
+            }
+
+            sortable.sort(function (a, b) {
+                return (a[1].localeCompare(b[1]));
+            });
+
             res.render(
                     'teams', {
                         title: 'Участники',
-                        data: results
+                        data: sortable
                     }
             );
         });
