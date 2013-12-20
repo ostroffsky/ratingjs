@@ -44,9 +44,12 @@ app.use(function(req, res, next) {
 app.use(app.router);
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.locals.devMode = false;
+
 // development only
 if ('development' == app.get('env')) {
-  app.use(express.errorHandler());
+    app.use(express.errorHandler());
+    app.locals.devMode = true;
 }
 
 // routes

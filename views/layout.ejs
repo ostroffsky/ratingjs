@@ -9,7 +9,6 @@
 
     <link rel='stylesheet' href='/stylesheets/style.css'/>
     <script type="text/javascript" src="/javascripts/jquery-2.0.3.min.js"></script>
-    <script type="text/javascript" src="/javascripts/script.js"></script>
 </head>
 
 <body class="<%= browserInfo.name %> <%= browserInfo.product %>">
@@ -18,7 +17,16 @@
 
 <% include navigation %>
 <%- body %>
+
+<script type="text/javascript" src="/javascripts/script.js"></script>
+
+<% if (devMode) { %>
+<!--
+Autoreload page only in development mode
+$ export NODE_ENV=development
+-->
 <script src='http://<%= host %>:3001/socket.io/socket.io.js'></script>
 <script src='http://<%= host %>:3002/browser-sync-client.min.js'></script>
+<% } %>
 </body>
 </html>
