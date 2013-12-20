@@ -10,7 +10,7 @@ exports.add = function(req, res){
         var name = req.params.name;
 
         db.save(null, {name: name}, function (err) {
-            if (err) { throw err; res.send("can't add tean");}
+            if (err) { throw err; res.send("can't add team");}
 
             res.redirect("/teams");
         });

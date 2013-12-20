@@ -13,13 +13,15 @@ exports.index = function (req, res) {
             var events = nStore.new('db/events.db', function () {
                 events.all(function (err, eventList) {
 
-                    var resultObject = {};
+                    var sortable = [];
+                    var index = 0;
 
                     for (var teamItem in teamList) {
                         // teamItem; // team id
                         // teamList[teamItem]; // team name
 
                         var sum = 0;
+                        index++;
 
                         for(var eventItem in eventList) {
                             //eventList[eventItem]; // event obj
@@ -27,19 +29,22 @@ exports.index = function (req, res) {
                             sum += parseInt(eventList[eventItem].results[teamItem]);
                         }
 
-                        resultObject[teamItem] = {
-                            id: teamItem,
-                            name: teamList[teamItem].name,
-                            points: sum
-                        };
+                        sortable.push([
+                            teamItem,
+                            teamList[teamItem].name,
+                            sum
+                        ]);
                     }
 
+                    sortable.sort(function (a, b) {
+                        return (b[2] - a[2]) || (a[1].localeCompare(b[1]));
+                    });
 
 
                     res.render(
                             'index', {
                                 title: 'Индивидуальный рейтинг',
-                                data: resultObject
+                                data: sortable
                             }
                     );
                 });

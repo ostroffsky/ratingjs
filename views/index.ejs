@@ -10,15 +10,17 @@
     <table class="superTable">
         <thead>
             <tr>
+                <td>#</td>
                 <td>Команда</td>
                 <td>Очки</td>
             </tr>
         </thead>
         <tbody>
-            <% for(var team in data) {%>
+            <% for(var i=0; i<data.length; i++ ) {%>
             <tr>
-                <td><%= data[team].name %></td>
-                <td><%= data[team].points %></td>
+                <td><%= i+1 %></td>
+                <td><%= data[i][1] %></td>
+                <td><%= data[i][2] %></td>
             </tr>
             <% } %>
         </tbody>
