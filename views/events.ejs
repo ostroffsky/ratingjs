@@ -1,5 +1,10 @@
 <% layout('layout') -%>
 
+<div class="addForm">
+    <input type="text" placeholder="Новое соревнование" id="name" class="i-t addForm_it"/>
+    <a id="add" href="#" class="al">добавить</a>
+</div>
+
 <table>
     <thead>
         <tr>
@@ -14,8 +19,6 @@
                 <% for(var team in teams) {%>
                 <span class="cell"><%= teams[team].name %></span>
                 <% } %>
-
-
             </td>
             <td></td>
             <td></td>
@@ -32,7 +35,7 @@
                             <input
                                     type="text"
                                     name="<%= team %>"
-                                    class="inp"
+                                    class="i-t inp"
                             <% if(events[event].results) { %>
                                 value="<%= events[event].results[team] %>"
                             <% } %>
@@ -41,19 +44,11 @@
                     <% } %>
                 </td>
                 <td><input type="submit" value="Сохранить"/></td>
-                <td><a href="/events/remove/<%= event %>">удалить</a></td>
+                <td><a href="/events/remove/<%= event %>" class="rl">удалить</a></td>
             </tr>
         </form>
         <% } %>
     </tbody>
-    <tfoot>
-        <tr>
-            <td><input type="text" placeholder="Добавить соревнование" id="name"/></td>
-            <td><a id="add" href="#">добавить</a></td>
-            <td></td>
-            <td></td>
-        </tr>
-    </tfoot>
 </table>
 
 <script type="text/javascript">

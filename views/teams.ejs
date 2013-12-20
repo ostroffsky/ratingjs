@@ -1,5 +1,10 @@
 <% layout('layout') -%>
 
+<div class="addForm">
+    <input type="text" placeholder="Новая команда" id="name" class="i-t addForm_it"/>
+    <a id="add" href="#" class="al">добавить</a>
+</div>
+
 <table>
     <thead>
         <tr>
@@ -11,16 +16,10 @@
         <% for(var team in data) {%>
         <tr>
             <td><%= data[team].name %></td>
-            <td><a href="/teams/remove/<%= team %>">удалить</a></td>
+            <td><a href="/teams/remove/<%= team %>" class="rl">удалить</a></td>
         </tr>
         <% } %>
     </tbody>
-    <tfoot>
-        <tr>
-            <td><input type="text" placeholder="Добавить команду" id="name"/></td>
-            <td><a id="add" href="#">добавить</a></td>
-        </tr>
-    </tfoot>
 </table>
 
 <script type="text/javascript">
