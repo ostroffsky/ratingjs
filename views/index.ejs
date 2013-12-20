@@ -17,21 +17,3 @@
         <% } %>
     </tbody>
 </table>
-
-<script type="text/javascript">
-    var onSubmit = function(e) {
-        e.preventDefault();
-        var name = document.getElementById("name").value;
-        if(name != "") {
-            window.location.href = "/teams/add/" + name;
-        }
-    };
-
-    document.getElementById("add").onclick = onSubmit;
-    document.getElementById("name").onkeydown = function(e) {
-        if(e.keyCode == 13) {
-            onSubmit(e);
-        }
-    };
-    document.getElementById("name").focus();
-</script>
