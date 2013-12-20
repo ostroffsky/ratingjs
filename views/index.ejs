@@ -1,51 +1,37 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css'/>
-    <script type="text/javascript" src="/javascripts/jquery-2.0.3.min.js"></script>
-    <script type="text/javascript" src="/javascripts/script.js"></script>
-</head>
-<body>
-    <h1><%= title %></h1>
+<% layout('layout') -%>
+<table class="superTable">
+    <thead>
+        <tr>
+            <td>#</td>
+            <td>Команда</td>
+            <td>Очки</td>
+        </tr>
+    </thead>
+    <tbody>
+        <% for(var i=0; i<data.length; i++ ) {%>
+        <tr>
+            <td><%= i+1 %></td>
+            <td><%= data[i][1] %></td>
+            <td><%= data[i][2] %></td>
+        </tr>
+        <% } %>
+    </tbody>
+</table>
 
-    <table class="superTable">
-        <thead>
-            <tr>
-                <td>#</td>
-                <td>Команда</td>
-                <td>Очки</td>
-            </tr>
-        </thead>
-        <tbody>
-            <% for(var i=0; i<data.length; i++ ) {%>
-            <tr>
-                <td><%= i+1 %></td>
-                <td><%= data[i][1] %></td>
-                <td><%= data[i][2] %></td>
-            </tr>
-            <% } %>
-        </tbody>
-    </table>
+<script type="text/javascript">
+    var onSubmit = function(e) {
+        e.preventDefault();
+        var name = document.getElementById("name").value;
+        if(name != "") {
+            window.location.href = "/teams/add/" + name;
+        }
+    };
 
-    <script type="text/javascript">
-        var onSubmit = function(e) {
-            e.preventDefault();
-            var name = document.getElementById("name").value;
-            if(name != "") {
-                window.location.href = "/teams/add/" + name;
-            }
-        };
-
-        document.getElementById("add").onclick = onSubmit;
-        document.getElementById("name").onkeydown = function(e) {
-            if(e.keyCode == 13) {
-                onSubmit(e);
-            }
-        };
-        document.getElementById("name").focus();
-    </script>
-    <script src='http://localhost:3001/socket.io/socket.io.js'></script>
-    <script src='http://localhost:3002/browser-sync-client.min.js'></script>
-</body>
-</html>
+    document.getElementById("add").onclick = onSubmit;
+    document.getElementById("name").onkeydown = function(e) {
+        if(e.keyCode == 13) {
+            onSubmit(e);
+        }
+    };
+    document.getElementById("name").focus();
+</script>

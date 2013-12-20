@@ -1,89 +1,75 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Соревнования</title>
-    <link rel='stylesheet' href='/stylesheets/style.css'/>
-    <script type="text/javascript" src="/javascripts/jquery-2.0.3.min.js"></script>
-    <script type="text/javascript" src="/javascripts/script.js"></script>
-</head>
-<body>
-    <h1>Соревнования</h1>
-    <% include navigation %>
+<% layout('layout') -%>
 
-    <table>
-        <thead>
+<table>
+    <thead>
+        <tr>
+            <td>Название</td>
+            <td>Результаты</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td class="nobr names">
+                <% for(var team in teams) {%>
+                <span class="cell"><%= teams[team].name %></span>
+                <% } %>
+
+
+            </td>
+            <td></td>
+            <td></td>
+        </tr>
+    </thead>
+    <tbody>
+        <% for(var event in events) {%>
+        <form action="/events/edit/<%= event %>">
             <tr>
-                <td>Название</td>
-                <td>Результаты</td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td></td>
-                <td class="nobr names">
+                <td><%= events[event].name %></td>
+                <td class="nobr">
                     <% for(var team in teams) {%>
-                    <span class="cell"><%= teams[team].name %></span>
+                        <span class="cell">
+                            <input
+                                    type="text"
+                                    name="<%= team %>"
+                                    class="inp"
+                            <% if(events[event].results) { %>
+                                value="<%= events[event].results[team] %>"
+                            <% } %>
+                            />
+                        </span>
                     <% } %>
-
-
                 </td>
-                <td></td>
-                <td></td>
+                <td><input type="submit" value="Сохранить"/></td>
+                <td><a href="/events/remove/<%= event %>">удалить</a></td>
             </tr>
-        </thead>
-        <tbody>
-            <% for(var event in events) {%>
-            <form action="/events/edit/<%= event %>">
-                <tr>
-                    <td><%= events[event].name %></td>
-                    <td class="nobr">
-                        <% for(var team in teams) {%>
-                            <span class="cell">
-                                <input
-                                        type="text"
-                                        name="<%= team %>"
-                                        class="inp"
-                                <% if(events[event].results) { %>
-                                    value="<%= events[event].results[team] %>"
-                                <% } %>
-                                />
-                            </span>
-                        <% } %>
-                    </td>
-                    <td><input type="submit" value="Сохранить"/></td>
-                    <td><a href="/events/remove/<%= event %>">удалить</a></td>
-                </tr>
-            </form>
-            <% } %>
-        </tbody>
-        <tfoot>
-            <tr>
-                <td><input type="text" placeholder="Добавить соревнование" id="name"/></td>
-                <td><a id="add" href="#">добавить</a></td>
-                <td></td>
-                <td></td>
-            </tr>
-        </tfoot>
-    </table>
+        </form>
+        <% } %>
+    </tbody>
+    <tfoot>
+        <tr>
+            <td><input type="text" placeholder="Добавить соревнование" id="name"/></td>
+            <td><a id="add" href="#">добавить</a></td>
+            <td></td>
+            <td></td>
+        </tr>
+    </tfoot>
+</table>
 
-    <script type="text/javascript">
-        var onSubmit = function(e) {
-            e.preventDefault();
-            var name = document.getElementById("name").value;
-            if(name != "") {
-                window.location.href = "/events/add/" + name;
-            }
-        };
+<script type="text/javascript">
+    var onSubmit = function(e) {
+        e.preventDefault();
+        var name = document.getElementById("name").value;
+        if(name != "") {
+            window.location.href = "/events/add/" + name;
+        }
+    };
 
-        document.getElementById("add").onclick = onSubmit;
-        document.getElementById("name").onkeydown = function(e) {
-            if(e.keyCode == 13) {
-                onSubmit(e);
-            }
-        };
-        document.getElementById("name").focus();
-    </script>
-    <script src='http://localhost:3001/socket.io/socket.io.js'></script>
-    <script src='http://localhost:3002/browser-sync-client.min.js'></script>
-</body>
-</html>
+    document.getElementById("add").onclick = onSubmit;
+    document.getElementById("name").onkeydown = function(e) {
+        if(e.keyCode == 13) {
+            onSubmit(e);
+        }
+    };
+    document.getElementById("name").focus();
+</script>

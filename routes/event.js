@@ -65,6 +65,7 @@ exports.index = function(req, res){
 
                     res.render(
                             'events', {
+                                title: "Соревнования",
                                 events: results,
                                 teams: teamResults
                             }

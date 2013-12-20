@@ -7,6 +7,7 @@ var express = require('express');
 var routes = require('./routes');
 var http = require('http');
 var path = require('path');
+var engine = require('ejs-locals')
 
 // modules
 var teams = require('./routes/team');
@@ -17,6 +18,7 @@ var app = express();
 // all environments
 app.set('port', process.env.PORT || 3000);
 app.set('views', path.join(__dirname, 'views'));
+app.engine('ejs', engine);
 app.set('view engine', 'ejs');
 app.use(express.favicon());
 app.use(express.logger('dev'));
