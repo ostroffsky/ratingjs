@@ -1,15 +1,16 @@
 {
-    "name": "application-name",
-    "version": "0.0.1",
-    "private": true,
-    "scripts": {
-        "start": "node app.js"
-    },
-    "dependencies": {
-        "express": "3.4.7",
-        "ejs": "*",
-        "less-middleware": "*",
-        "nstore": "*",
-        "ejs-locals": "*"
-    }
+  "name": "application-name",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "express": "3.4.7",
+    "ejs": "*",
+    "less-middleware": "*",
+    "nstore": "*",
+    "ejs-locals": "*",
+    "platform": "~1.0.0"
+  }
 }

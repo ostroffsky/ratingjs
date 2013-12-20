@@ -38,9 +38,9 @@ td {
   vertical-align: top;
   margin-right: 5px;
 }
-.nobr { white-space: nowrap; }
-
-
+.nobr {
+  white-space: nowrap;
+}
 .names {
   font-weight: normal;
   font-size: 90%;
@@ -67,12 +67,6 @@ td {
   color: #fff;
   font-size: 16px;
 }
-
-/* colors */
-.gold { background-color: gold; }
-.silver { background-color: silver; }
-.bronze { background-color: #F19A79; }
-
 /* forms */
 .addForm {
   margin-bottom: 20px;
@@ -89,3 +83,13 @@ td {
   padding: 4px 0 4px 6px;
   font-size: 14px;
 }
+
+/* MOBILE */
+.iPhone { padding: 10px; }
+.iPhone table { width: 100%; }
+.iPhone h1 { margin-top: 0; }
+.iPhone .addForm_it { width: 200px; }
+
+.iPad table { width: 100%; }
+.iPad h1 { margin-top: 0; }
+.iPad .addForm_it { width: 550px; }

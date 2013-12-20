@@ -2,18 +2,23 @@
 <html>
 <head>
     <title><%= title %></title>
+
+    <% if (browserInfo.product == "iPhone" || browserInfo.product == "iPad") { %>
+    <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0;"/>
+    <% } %>
+
     <link rel='stylesheet' href='/stylesheets/style.css'/>
     <script type="text/javascript" src="/javascripts/jquery-2.0.3.min.js"></script>
     <script type="text/javascript" src="/javascripts/script.js"></script>
 </head>
-<body>
+
+<body class="<%= browserInfo.name %> <%= browserInfo.product %>">
 <h1>Рейтинг игроков в настольный футбол</h1>
 <h2><%= title %></h2>
 
 <% include navigation %>
 <%- body %>
-
-<script src='http://localhost:3001/socket.io/socket.io.js'></script>
-<script src='http://localhost:3002/browser-sync-client.min.js'></script>
+<script src='http://<%= host %>:3001/socket.io/socket.io.js'></script>
+<script src='http://<%= host %>:3002/browser-sync-client.min.js'></script>
 </body>
 </html>

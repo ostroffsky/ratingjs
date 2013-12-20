@@ -7,7 +7,8 @@ var express = require('express');
 var routes = require('./routes');
 var http = require('http');
 var path = require('path');
-var engine = require('ejs-locals')
+var engine = require('ejs-locals');
+var platform = require('platform');
 
 // modules
 var teams = require('./routes/team');
@@ -27,8 +28,20 @@ app.use(express.urlencoded());
 app.use(express.methodOverride());
 app.use(express.cookieParser('your secret here'));
 app.use(express.session());
+
+// user agent detection
+app.use(function(req, res, next) {
+    //set user agent info to locals
+    var ua = req.headers['user-agent'];
+    res.locals.browserInfo = platform.parse(ua);
+    if(!res.locals.browserInfo.product) {
+        res.locals.browserInfo.product = "";
+    }
+    // set host to locals
+    res.locals.host=req.host;
+    next();
+});
 app.use(app.router);
-app.use(require('less-middleware')({ src: path.join(__dirname, 'public') }));
 app.use(express.static(path.join(__dirname, 'public')));
 
 // development only

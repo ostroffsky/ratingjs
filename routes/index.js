@@ -9,7 +9,6 @@ exports.index = function (req, res) {
     var db = nStore.new('db/teams.db', function () {
         db.all(function (err, teamList) {
 
-
             var events = nStore.new('db/events.db', function () {
                 events.all(function (err, eventList) {
 
@@ -40,7 +39,6 @@ exports.index = function (req, res) {
                         return (b[2] - a[2]) || (a[1].localeCompare(b[1]));
                     });
 
-
                     res.render(
                             'index', {
                                 title: 'Индивидуальный рейтинг',
@@ -49,8 +47,6 @@ exports.index = function (req, res) {
                     );
                 });
             });
-
-
         });
     });
 };
