@@ -1,3 +1,4 @@
 *.db
+*.css
 /node_modules/*
 *.iml
