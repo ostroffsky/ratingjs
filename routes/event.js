@@ -1,83 +1,75 @@
-
 /*
  * manage events
  */
-var nStore = require('nstore');
-nStore = nStore.extend(require('nstore/query')());
+var database = require("../db/db");
 
 exports.add = function(req, res){
-    var db = nStore.new('db/events.db', function () {
-        var name = req.params.name;
+    var name = {
+        name: req.params.name
+    };
 
-        db.save(null, {name: name}, function (err) {
-            if (err) {
-                throw err; res.send("can't add event");
-            } else {
-                res.redirect("/events");
-            }
-        });
+    database.addEvent(name, function (err) {
+        if (err) {
+            throw err; res.send("can't add event");
+        } else {
+            res.redirect("/events");
+        }
     });
 };
 
 exports.edit = function(req, res){
-    var db = nStore.new('db/events.db', function () {
-        var id = req.params.id;
-        var params = req.query;
+    var id = req.params.id;
+    var params = req.query;
 
-        db.get(id, function (err, team) {
+    database.getEvent(id, function (err, team) {
 
-            if (team) {
-                var data = {name: team.name};
-                data.results = params;
+        if (team) {
+            var data = {
+                name: team.name,
+                results: params
+            };
 
-                db.save(id, data, function (err) {
-                    if (err) {
-                        throw err; res.send("can't edit event");
-                    } else {
-                        res.redirect("/events");
-                    }
-                });
-            } else {
-                // just redirect
-                res.redirect("/events");
-            }
-
-        });
-
+            database.addEvent(data, function (err) {
+                if (err) {
+                    throw err; res.send("can't edit event");
+                } else {
+                    res.redirect("/events");
+                }
+            }, id);
+        } else {
+            // just redirect
+            res.redirect("/events");
+        }
 
     });
+
 };
 
 exports.remove = function(req, res){
-    var db = nStore.new('db/events.db', function () {
-        var id = req.params.id;
+    var id = req.params.id;
 
-        db.remove(id, function (err) {
-            if (err) {
-                throw err; res.send("can't remove event");
-            } else {
-                res.redirect("/events");
-            }
-        });
+    database.removeEvent(id, function (err) {
+        if (err) {
+            throw err; res.send("can't remove event");
+        } else {
+            res.redirect("/events");
+        }
     });
 };
 
 exports.index = function(req, res){
-    var db = nStore.new('db/events.db', function () {
-        db.all(function (err, results) {
+    database.getEvents(function (err, results) {
 
-            var teams = nStore.new('db/teams.db', function () {
-                teams.all(function (err, teamResults) {
+        database.getTeams(function (err, teamResults) {
 
-                    res.render(
-                            'events', {
-                                title: "Соревнования",
-                                events: results,
-                                teams: teamResults
-                            }
-                    );
-                });
-            });
+            res.render(
+                    'events', {
+                        title: "Соревнования",
+                        events: results,
+                        teams: teamResults
+                    }
+            );
         });
+
     });
 };
