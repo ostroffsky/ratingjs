@@ -29,9 +29,11 @@ exports.edit = function(req, res){
                 data.results = params;
 
                 db.save(id, data, function (err) {
-                    if (err) { throw err; res.send("can't edit event");}
-
-                    res.redirect("/events");
+                    if (err) {
+                        throw err; res.send("can't edit event");
+                    } else {
+                        res.redirect("/events");
+                    }
                 });
             } else {
                 // just redirect
@@ -49,9 +51,11 @@ exports.remove = function(req, res){
         var id = req.params.id;
 
         db.remove(id, function (err) {
-            if (err) { throw err; res.send("can't remove event");}
-
-            res.redirect("/events");
+            if (err) {
+                throw err; res.send("can't remove event");
+            } else {
+                res.redirect("/events");
+            }
         });
     });
 };

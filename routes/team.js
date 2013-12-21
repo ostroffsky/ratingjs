@@ -10,9 +10,11 @@ exports.add = function(req, res){
         var name = req.params.name;
 
         db.save(null, {name: name}, function (err) {
-            if (err) { throw err; res.send("can't add team");}
-
-            res.redirect("/teams");
+            if (err) {
+                throw err; res.send("can't add team");
+            } else {
+                res.redirect("/teams");
+            }
         });
     });
 };
@@ -22,9 +24,11 @@ exports.remove = function(req, res){
         var id = req.params.id;
 
         db.remove(id, function (err) {
-            if (err) { throw err; res.send("can't remove team");}
-
-            res.redirect("/teams");
+            if (err) {
+                throw err; res.send("can't remove team");
+            } else {
+                res.redirect("/teams");
+            }
         });
     });
 };
