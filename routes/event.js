@@ -10,9 +10,11 @@ exports.add = function(req, res){
         var name = req.params.name;
 
         db.save(null, {name: name}, function (err) {
-            if (err) { throw err; res.send("can't add event");}
-
-            res.redirect("/events");
+            if (err) {
+                throw err; res.send("can't add event");
+            } else {
+                res.redirect("/events");
+            }
         });
     });
 };
