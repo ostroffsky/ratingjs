@@ -1,90 +1,124 @@
 body {
-  padding: 50px;
-  color: #555;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+    padding: 50px;
+    color: #555;
+    font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
 a {
-  color: #00B7FF;
+    color: #00B7FF;
 }
 
 .rl {
-  color: #000;
+    color: #000;
 }
 .al {
-  color: #73c051;
+    color: #73c051;
 }
 
 table {
-  border-collapse: collapse;
+    border-collapse: collapse;
+    width: 100%;
 }
 thead {
-  background-color: #eee;
-  font-weight: bold;
+    background-color: #eee;
+    font-weight: bold;
+}
+thead tr {
+    border-bottom: 1px solid #ccc;
 }
 tr {
-  border-top: 1px solid #eee;
+    border-bottom: 1px solid #eee;
 }
 td {
-  padding: 5px 10px;
+    padding: 5px 10px;
+}
+
+.superTable_name {
+    width: 20em;
+}
+.superTable_points {
+    background-color: #efefef;
+    border-right: 1px solid #ccc;
+    border-left: 1px solid #ccc;
+}
+.superTable_additional {
+    text-align: center;
+    color: #aaa;
+}
+thead .superTable_additional {
+    color: #888;
+    font-weight: normal;
+    font-size: 12px;
 }
 
 .cell {
-  display: inline-block;
-  width: 80px;
-  text-overflow: ellipsis;
-  overflow: hidden;
-  white-space: normal;
-  vertical-align: top;
-  margin-right: 5px;
+    display: inline-block;
+    width: 80px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: normal;
+    vertical-align: top;
+    margin-right: 5px;
 }
 .nobr {
-  white-space: nowrap;
+    white-space: nowrap;
 }
 .names {
-  font-weight: normal;
-  font-size: 90%;
+    font-weight: normal;
+    font-size: 90%;
 }
 
 /* navigation */
 .navigation {
-  list-style: none;
-  padding: 0 0 20px 0;
-  margin-bottom: 30px;
-  margin-left: -10px;
-  border-bottom: 1px solid #ccc;
+    list-style: none;
+    padding: 0 0 20px 0;
+    margin-bottom: 30px;
+    margin-left: -10px;
+    border-bottom: 1px solid #ccc;
 }
 .navigation_i {
-  display: inline-block;
+    display: inline-block;
 }
 .navigation_a {
-  padding: 4px 10px;
+    padding: 4px 10px;
 }
 .navigation_a.__active {
-  background-color: #00B7FF;
-  text-decoration: none;
-  cursor: default;
-  color: #fff;
+    background-color: #00B7FF;
+    text-decoration: none;
+    cursor: default;
+    color: #fff;
 }
 /* forms */
 .addForm {
-  margin-bottom: 20px;
+    margin-bottom: 20px;
 }
 .addForm_it {
-  width: 300px;
-  margin-right: 10px;
+    width: 300px;
+    margin-right: 10px;
 }
 .inp {
-  width: 5em;
+    width: 5em;
 }
 .i-t {
-  border: 1px solid #ccc;
-  padding: 4px 0 4px 6px;
-  font-size: 14px;
+    border: 1px solid #ccc;
+    padding: 4px 0 4px 6px;
+    font-size: 14px;
 }
 
+.medal {
+    display: inline-block;
+    margin-left: -20px;
+    padding-left: 20px;
+    background-repeat: no-repeat;
+    background-position: 0 50%;
+}
+.medal.__1 { background-image: url(/images/medal_award_gold.png); }
+.medal.__2 { background-image: url(/images/medal_award_silver.png); }
+.medal.__3 { background-image: url(/images/medal_award_bronze.png); }
+
 /* MOBILE */
-.iPhone { padding: 10px; }
+.iPhone { padding: 0px; }
+.iPhone .navigation {margin-left: 0; }
 .iPhone table { width: 100%; }
 .iPhone h1 { margin-top: 0; }
 .iPhone .addForm_it { width: 200px; }

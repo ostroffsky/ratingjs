@@ -8,7 +8,6 @@ var database = require("../db/db");
 
 exports.index = function (req, res) {
 
-
     database.getTeams(function (teamErr, teamList) {
         database.getEvents(function (eventErr, eventList) {
 
@@ -42,7 +41,8 @@ exports.index = function (req, res) {
             res.render(
                     'index', {
                         title: 'Индивидуальный рейтинг',
-                        data: sortable
+                        data: sortable,
+                        events: eventList
                     }
             );
         });

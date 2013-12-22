@@ -2,6 +2,7 @@
  * manage events
  */
 var database = require("../db/db");
+var utils = require("../utils/utils");
 
 exports.add = function(req, res){
     var name = {
@@ -21,12 +22,15 @@ exports.edit = function(req, res){
     var id = req.params.id;
     var params = req.query;
 
+    var top = utils.extractTopN(params, 3);
+
     database.getEvent(id, function (err, team) {
 
         if (team) {
             var data = {
                 name: team.name,
-                results: params
+                results: params,
+                places: top
             };
 
             database.addEvent(data, function (err) {

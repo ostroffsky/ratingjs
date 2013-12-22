@@ -3,16 +3,30 @@
     <thead>
         <tr>
             <td>#</td>
-            <td>Спортсмен</td>
-            <td>&Sigma;</td>
+            <td class="superTable_name">Спортсмен</td>
+            <td class="superTable_points">&Sigma;</td>
+
+            <% for(var event in events) {%>
+            <td class="superTable_additional"><%= events[event].name %></td>
+            <% } %>
+
         </tr>
     </thead>
     <tbody>
         <% for(var i=0; i<data.length; i++ ) {%>
         <tr>
             <td><%= i+1 %></td>
-            <td><%= data[i][1] %></td>
-            <td><%= data[i][2] %></td>
+            <td class="superTable_name"><%= data[i][1] %></td>
+            <td class="superTable_points"><%= data[i][2] %></td>
+
+            <% for(var event in events) {%>
+            <td class="superTable_additional">
+                <span class="medal __<%= events[event].places[data[i][0]] %>">
+                    <%= events[event].results[data[i][0]] %>
+                </span>
+            </td>
+            <% } %>
+
         </tr>
         <% } %>
     </tbody>
