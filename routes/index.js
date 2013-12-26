@@ -8,8 +8,8 @@ var database = require("../db/db");
 
 exports.index = function (req, res) {
 
-    database.getTeams(function (teamErr, teamList) {
-        database.getEvents(function (eventErr, eventList) {
+    database.getTeams(function (teamList) {
+        database.getEvents(function (eventList) {
 
             var sortable = [];
             var index = 0;
@@ -24,11 +24,11 @@ exports.index = function (req, res) {
                 for(var eventItem in eventList) {
                     //eventList[eventItem]; // event obj
                     //eventList[eventItem].results[teamItem]; // team points @ event
-                    sum += parseInt(eventList[eventItem].results[teamItem]);
+                    sum += parseInt(eventList[eventItem].results[teamList[teamItem]._id]);
                 }
 
                 sortable.push([
-                    teamItem,
+                    teamList[teamItem]._id,
                     teamList[teamItem].name,
                     sum
                 ]);

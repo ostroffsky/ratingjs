@@ -5,16 +5,10 @@ var database = require("../db/db");
 var utils = require("../utils/utils");
 
 exports.add = function(req, res){
-    var name = {
-        name: req.params.name
-    };
+    var name = req.params.name;
 
-    database.addEvent(name, function (err) {
-        if (err) {
-            throw err; res.send("can't add event");
-        } else {
-            res.redirect("/events");
-        }
+    database.addEvent(name, function () {
+        res.redirect("/events");
     });
 };
 
@@ -24,27 +18,8 @@ exports.edit = function(req, res){
 
     var top = utils.extractTopN(params, 3);
 
-    database.getEvent(id, function (err, team) {
-
-        if (team) {
-            var data = {
-                name: team.name,
-                results: params,
-                places: top
-            };
-
-            database.addEvent(data, function (err) {
-                if (err) {
-                    throw err; res.send("can't edit event");
-                } else {
-                    res.redirect("/events");
-                }
-            }, id);
-        } else {
-            // just redirect
-            res.redirect("/events");
-        }
-
+    database.updateEvent(id, params, top, function () {
+       res.redirect("/events");
     });
 
 };
@@ -52,20 +27,14 @@ exports.edit = function(req, res){
 exports.remove = function(req, res){
     var id = req.params.id;
 
-    database.removeEvent(id, function (err) {
-        if (err) {
-            throw err; res.send("can't remove event");
-        } else {
-            res.redirect("/events");
-        }
+    database.removeEvent(id, function () {
+        res.redirect("/events");
     });
 };
 
 exports.index = function(req, res){
-    database.getEvents(function (err, results) {
-
-        database.getTeams(function (err, teamResults) {
-
+    database.getEvents(function (results) {
+        database.getTeams(function (teamResults) {
             res.render(
                     'events', {
                         title: "Соревнования",
@@ -74,6 +43,5 @@ exports.index = function(req, res){
                     }
             );
         });
-
     });
 };

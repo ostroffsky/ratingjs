@@ -26,7 +26,7 @@
     </thead>
     <tbody>
         <% for(var event in events) {%>
-        <form action="/events/edit/<%= event %>">
+        <form action="/events/edit/<%= events[event]._id %>">
             <tr>
                 <td><%= events[event].name %></td>
                 <td class="nobr">
@@ -34,17 +34,17 @@
                         <span class="cell">
                             <input
                                     type="text"
-                                    name="<%= team %>"
+                                    name="<%= teams[team]._id %>"
                                     class="i-t inp"
                             <% if(events[event].results) { %>
-                                value="<%= events[event].results[team] %>"
+                                value="<%= events[event].results[teams[team]._id] %>"
                             <% } %>
                             />
                         </span>
                     <% } %>
                 </td>
                 <td><input type="submit" value="Сохранить"/></td>
-                <td><a href="/events/remove/<%= event %>" class="rl">удалить</a></td>
+                <td><a href="/events/remove/<%= events[event]._id %>" class="rl">удалить</a></td>
             </tr>
         </form>
         <% } %>

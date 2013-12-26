@@ -1,6 +1,6 @@
 {
-  "name": "application-name",
-  "version": "0.0.1",
+  "name": "ratingjs",
+  "version": "0.1.1",
   "private": true,
   "scripts": {
     "start": "node app.js"
@@ -9,9 +9,9 @@
     "express": "3.4.7",
     "ejs": "*",
     "less-middleware": "*",
-    "nstore": "*",
     "ejs-locals": "*",
-    "platform": "~1.0.0"
+    "platform": "~1.0.0",
+    "mongoose": "~3.8.3"
   },
   "devDependencies": {
     "grunt": ">= 0.4",

@@ -18,22 +18,18 @@ exports.add = function(req, res){
 exports.remove = function(req, res){
     var id = req.params.id;
 
-    database.removeTeam(id, function (err) {
-        if (err) {
-            throw err; res.send("can't remove team");
-        } else {
-            res.redirect("/teams");
-        }
+    database.removeTeam(id, function () {
+        res.redirect("/teams");
     });
 };
 
 exports.index = function (req, res) {
-    database.getTeams(function (err, teamList) {
+    database.getTeams(function (teamList) {
         var sortable = [];
 
         for (var teamItem in teamList) {
             sortable.push([
-                teamItem,
+                teamList[teamItem]._id,
                 teamList[teamItem].name
             ]);
         }

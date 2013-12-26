@@ -14,6 +14,9 @@ var teams = require('./routes/team');
 var events = require('./routes/event');
 var ua = require('./utils/ua');
 
+// database
+var mongo = require('./db/db');
+
 var app = express();
 
 // all environments
